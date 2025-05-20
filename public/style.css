@@ -1,0 +1,1159 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #1c1c1e;
+  color: #fff;
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 60px;
+}
+
+/* Login Form Styles */
+.login-form {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.form-container {
+  background-color: #2a2a2d;
+  padding: 1.5rem;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 350px;
+  text-align: center;
+}
+.form-container h2 {
+  color: #b4ff39;
+  margin-bottom: 0.8rem;
+  font-size: 1.3rem;
+}
+.form-container p {
+  color: #ccc;
+  margin-bottom: 1.2rem;
+  font-size: 0.8rem;
+}
+.form-container input {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 0.8rem;
+  border: none;
+  border-radius: 10px;
+  background-color: #3a3a3d;
+  color: white;
+  font-size: 0.9rem;
+}
+.form-container button {
+  background-color: #b4ff39;
+  color: #000;
+  padding: 0.6rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.app {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0.8rem;
+  width: 100%;
+  height: 100%;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0;
+}
+.greeting {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #b4ff39;
+}
+.sub-greeting {
+  font-size: 0.7rem;
+  color: #ccc;
+}
+.avatar img {
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  object-fit: cover;
+}
+
+.content-area {
+  height: calc(100vh - 150px);
+  overflow-y: auto;
+  padding-bottom: 60px;
+}
+
+.training-plan {
+  margin-top: 1.2rem;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease;
+}
+
+.my-activity {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease;
+}
+
+.account-section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  padding: 1rem;
+  background-color: #2a2a2d;
+  border-radius: 15px;
+}
+
+/* Days Container with Horizontal Scrolling */
+.days-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 0.8rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.days-container::-webkit-scrollbar {
+  display: none;
+}
+.days-scroll {
+  display: inline-block;
+  white-space: nowrap;
+  padding-bottom: 5px;
+}
+.days {
+  display: inline-flex;
+  gap: 0.4rem;
+  padding: 0 0.4rem;
+}
+.day {
+  background-color: #2a2a2d;
+  padding: 0.4rem 0.8rem;
+  text-align: center;
+  border-radius: 8px;
+  color: #888;
+  min-width: 60px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  font-size: 0.7rem;
+}
+.day:hover {
+  background-color: #3a3a3d;
+}
+.day.active {
+  background-color: #b4ff39;
+  color: #000;
+  font-weight: bold;
+}
+
+.progress-card {
+  background-color: #2a2a2d;
+  padding: 0.8rem;
+  border-radius: 15px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.lesson-content-area {
+  flex: 1;
+}
+.tag {
+  background-color: #b4ff39;
+  padding: 2px 6px;
+  border-radius: 6px;
+  color: #000;
+  font-size: 0.6rem;
+  display: inline-block;
+  margin-bottom: 0.4rem;
+}
+.progress-header h2 {
+  margin: 0.4rem 0;
+  font-size: 1.1rem;
+  padding-right: 60px;
+}
+.details {
+  color: #aaa;
+  font-size: 0.7rem;
+  margin-bottom: 0.8rem;
+}
+.lesson-content {
+  margin: 0.8rem 0;
+}
+.lesson-content p {
+  margin-bottom: 0.8rem;
+  line-height: 1.3;
+  font-size: 0.8rem;
+}
+
+.lesson-content {
+    overflow: auto;
+    max-height: calc(100vh - 280px);
+    padding: 10px;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.lesson-audio {
+  width: 100%;
+  margin: 0.8rem 0;
+  border-radius: 10px;
+  background-color: #3a3a3d;
+}
+.no-audio {
+  color: #ff6b6b;
+  padding: 0.8rem;
+  background-color: #3a3a3d;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 0.7rem;
+}
+.lesson-links {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 0.8rem;
+  flex-wrap: wrap;
+}
+.resource-link {
+  color: #b4ff39;
+  text-decoration: none;
+  font-size: 0.7rem;
+  background-color: #3a3a3d;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  display: inline-block;
+}
+.resource-link:hover {
+  background-color: #4a4a4d;
+}
+
+/* Login/Register Form Styles */
+.login-form {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.form-container {
+  background-color: #2a2a2d;
+  padding: 1.5rem;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 350px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.form-container h2 {
+  color: #b4ff39;
+  margin-bottom: 0.8rem;
+  font-size: 1.3rem;
+}
+
+.form-container p {
+  color: #ccc;
+  margin-bottom: 1.2rem;
+  font-size: 0.8rem;
+}
+
+.form-container input {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 0.8rem;
+  border: none;
+  border-radius: 10px;
+  background-color: #3a3a3d;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.form-container button {
+  background-color: #b4ff39;
+  color: #000;
+  padding: 0.6rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 0.5rem;
+  transition: background-color 0.3s;
+}
+
+.form-container button:hover {
+  background-color: #c4ff59;
+}
+
+.avatar-upload {
+  width: 100%;
+  margin: 0.8rem 0;
+  text-align: left;
+}
+
+.avatar-upload label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.8rem;
+  color: #ccc;
+}
+
+.form-container a {
+  color: #b4ff39;
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: color 0.3s;
+}
+
+.form-container a:hover {
+  color: #c4ff59;
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 400px) {
+  .form-container {
+    padding: 1.2rem;
+  }
+  
+  .form-container h2 {
+    font-size: 1.1rem;
+  }
+}
+
+.progress-circle {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  width: 60px;
+  height: 60px;
+}
+svg {
+  width: 60px;
+  height: 60px;
+  transform: rotate(-90deg);
+}
+circle {
+  fill: none;
+  stroke: #444;
+  stroke-width: 5;
+}
+circle.progress {
+  stroke: #b4ff39;
+  stroke-dasharray: 188.4;
+  stroke-dashoffset: 188.4;
+  transition: stroke-dashoffset 0.5s ease;
+}
+.percentage-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.percentage {
+  font-weight: bold;
+  font-size: 0.8rem;
+  margin-bottom: 2px;
+}
+.progress-label {
+  font-size: 0.6rem;
+  color: #aaa;
+}
+.continue {
+  margin-top: 0.8rem;
+  background-color: #b4ff39;
+  color: #000;
+  padding: 0.6rem;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.continue:hover {
+  background-color: #c4ff59;
+}
+.progress-warning {
+  color: #ff6b6b;
+  text-align: center;
+  margin-top: 0.4rem;
+  font-size: 0.7rem;
+  display: none;
+}
+.my-activity h3 {
+  margin: 1.5rem 0 0.8rem 0;
+  font-size: 1rem;
+}
+.categories {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+  overflow-x: auto;
+  padding-bottom: 5px;
+}
+.categories button {
+  background-color: #2a2a2d;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  color: #ccc;
+  border-radius: 10px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.3s;
+  font-size: 0.7rem;
+}
+.categories button:hover {
+  background-color: #3a3a3d;
+}
+.categories .active {
+  background-color: #b4ff39;
+  color: #000;
+}
+.workouts {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+.workout-card {
+  background-color: #333;
+  padding: 0.4rem;
+  border-radius: 10px;
+  width: 100%;
+  text-align: center;
+  transition: transform 0.3s;
+}
+.workout-card:hover {
+  transform: translateY(-2px);
+}
+.workout-card img {
+  width: 100%;
+  border-radius: 6px;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+.workout-card .desc {
+  margin-top: 0.4rem;
+  font-size: 0.7rem;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+  background-color: #1c1c1e;
+  border-top: 1px solid #444;
+  z-index: 100;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.nav-btn {
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  padding: 0.4rem 0.6rem;
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+}
+.nav-btn .nav-icon {
+  font-size: 1rem;
+  margin-bottom: 0.1rem;
+}
+.nav-btn .nav-text {
+  font-size: 0.6rem;
+}
+.nav-btn:hover {
+  color: #ccc;
+}
+.nav-btn.active {
+  color: #b4ff39;
+}
+.nav-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 15px;
+  height: 2px;
+  background-color: #b4ff39;
+  border-radius: 2px;
+}
+
+/* Account Section Styles */
+.account-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.setting-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.setting-item label {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.setting-item select {
+  padding: 0.5rem;
+  border-radius: 10px;
+  background-color: #3a3a3d;
+  color: white;
+  border: none;
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .app {
+    max-width: 600px;
+    padding: 1.5rem;
+  }
+  .workout-card {
+    width: calc(50% - 0.4rem);
+  }
+  .categories {
+    flex-wrap: wrap;
+  }
+  .nav-btn {
+    padding: 0.4rem 0.8rem;
+  }
+  .nav-btn .nav-icon {
+    font-size: 1.2rem;
+  }
+  .nav-btn .nav-text {
+    font-size: 0.7rem;
+  }
+}
+
+/* Add these to your style.css file */
+
+/* 1. Prevent double scrollbars on body */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* 2. Main app container - prevent horizontal overflow */
+.app {
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0.8rem;
+  overflow: hidden; /* Prevent any overflow */
+}
+
+/* 3. Content area - controlled vertical scrolling only */
+.content-area {
+  height: calc(100vh - 150px);
+  overflow-y: auto;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  padding-bottom: 60px;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.content-area::-webkit-scrollbar {
+  display: none;
+}
+
+/* 4. Days container - horizontal scrolling without scrollbar */
+.days-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar; /* Edge auto-hide */
+  scrollbar-width: none; /* Firefox */
+  margin-bottom: 0.8rem;
+}
+
+.days-container::-webkit-scrollbar {
+  height: 0 !important; /* Hide but keep functionality */
+  display: none;
+}
+
+/* 5. Lesson content - controlled scrolling */
+.lesson-content {
+  max-height: calc(100vh - 280px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 10px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.lesson-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* 6. Ensure video/audio elements don't cause overflow */
+.video-container,
+.audio-player-container {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* Add these new styles */
+.lesson-content-container {
+  padding: 0 15px;
+}
+
+.audio-progress, .questions-section {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.lesson-description {
+  padding: 0 15px; /* Adjust this to match the title's padding */
+  margin: 0; /* Adjust this to match the title's margin */
+}
+
+/* Progress Tab Styles */
+.progress-tab {
+  display: none;
+  padding: 15px;
+}
+
+.progress-stats {
+  background-color: #2a2a2d;
+  border-radius: 15px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.progress-chart {
+  height: 200px;
+  background-color: #2a2a2d;
+  border-radius: 15px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+/* Community Tab Styles */
+.community-tab {
+  display: none;
+  padding: 15px;
+}
+
+.community-posts {
+  background-color: #2a2a2d;
+  border-radius: 15px;
+  padding: 15px;
+}
+
+.post {
+  padding: 10px 0;
+  border-bottom: 1px solid #3a3a3d;
+}
+
+.post:last-child {
+  border-bottom: none;
+}
+
+/* Custom Audio Player Styles */
+.custom-audio-player {
+  width: 100%;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 15px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.play-pause-btn {
+  background: #b4ff39;
+  color: #000;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.progress-container {
+  flex-grow: 1;
+  height: 8px;
+  background: #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.progress-bar {
+  height: 100%;
+  background: #b4ff39;
+  border-radius: 4px;
+  width: 0%;
+}
+
+.time-display {
+  font-size: 12px;
+  color: #000;
+}
+
+.volume-controls {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.volume-slider {
+  flex-grow: 1;
+}
+
+.volume-label {
+  margin-left: 10px;
+  font-size: 12px;
+  color: #000;
+}
+
+/* Assignment Box Styles */
+.assignment-box {
+  background: #2a2a2d;
+  border-radius: 12px;
+  margin: 20px 0;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: max-height 0.3s ease-out;
+  max-height: 60px;
+  overflow: hidden;
+}
+
+.assignment-box.expanded {
+  max-height: 1000px;
+}
+
+.assignment-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px;
+  background: rgba(180, 255, 57, 0.1);
+  border-bottom: 1px solid #3a3a3d;
+  cursor: pointer;
+}
+
+.assignment-header h4 {
+  margin: 0;
+  color: #b4ff39;
+  font-size: 1rem;
+}
+
+.toggle-icon {
+  color: #b4ff39;
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.assignment-box.expanded .toggle-icon {
+  transform: rotate(180deg);
+}
+
+.assignment-content {
+  padding: 15px;
+}
+
+.instruction {
+  color: #aaa;
+  font-size: 0.85rem;
+  margin-bottom: 15px;
+}
+
+.assignment-questions {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.assignment-questions li {
+  display: flex;
+  gap: 8px;
+  padding: 10px 0;
+  border-bottom: 1px dashed #3a3a3d;
+  align-items: flex-start;
+}
+
+.assignment-questions li:last-child {
+  border-bottom: none;
+}
+
+.question-number {
+  color: #b4ff39;
+  font-weight: bold;
+  min-width: 20px;
+}
+
+.question-text {
+  flex: 1;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.solution-box {
+  margin-top: 15px;
+  padding: 12px;
+  background: rgba(180, 255, 57, 0.05);
+  border-radius: 8px;
+  text-align: center;
+  border: 1px dashed rgba(180, 255, 57, 0.3);
+}
+
+.solution-box p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.highlight {
+  color: #b4ff39;
+  font-weight: bold;
+}
+
+/* WhatsApp Button Styles */
+.whatsapp-button {
+  background-color: #25D366;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 300px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.whatsapp-button:hover {
+  background-color: #128C7E;
+}
+
+.whatsapp-icon {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+/* Additional Lesson Styles */
+.additional-lesson {
+  margin-top: 20px;
+  padding: 15px;
+  background: #2a2a2d;
+  border-radius: 12px;
+}
+
+.additional-lesson h4 {
+  color: #b4ff39;
+  margin-bottom: 10px;
+}
+
+.additional-lesson audio {
+  width: 100%;
+}
+
+
+/* Make register form match login form styling */
+#registerForm .form-container {
+  background-color: #2a2a2d;
+  padding: 1.5rem;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 350px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+#registerForm .form-container h2 {
+  color: #b4ff39;
+  margin-bottom: 0.8rem;
+  font-size: 1.3rem;
+}
+
+#registerForm .form-container p {
+  color: #ccc;
+  margin-bottom: 1.2rem;
+  font-size: 0.8rem;
+}
+
+#registerForm .form-container input {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 0.8rem;
+  border: none;
+  border-radius: 10px;
+  background-color: #3a3a3d;
+  color: white;
+  font-size: 0.9rem;
+}
+
+#registerForm .form-container button {
+  background-color: #b4ff39;
+  color: #000;
+  padding: 0.6rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+#registerForm .avatar-upload {
+  width: 100%;
+  margin-bottom: 0.8rem;
+  text-align: left;
+}
+
+#registerForm .avatar-upload label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.8rem;
+  color: #ccc;
+}
+
+#registerForm .form-container a {
+  color: #b4ff39;
+  text-decoration: none;
+  font-size: 0.8rem;
+}
+
+#registerForm .form-container a:hover {
+  text-decoration: underline;
+}
+
+
+/* Header and Logout Button Styles */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logout-btn {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #ff3333;
+}
+
+/* Login/Register Form Styles */
+.login-form {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px; /* Add padding to prevent form touching screen edges */
+  box-sizing: border-box;
+}
+
+.form-container {
+  background-color: #2a2a2d;
+  padding: 1.8rem; /* Slightly more padding */
+  border-radius: 15px;
+  width: 100%;
+  max-width: 350px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.4s ease-out;
+  transform: translateY(0); /* Reset any potential transform */
+  margin: auto; /* Ensures centering */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-container h2 {
+  color: #b4ff39;
+  margin-bottom: 1rem; /* Slightly more space */
+  font-size: 1.5rem; /* Larger heading */
+  font-weight: 700;
+}
+
+.form-container p {
+  color: #ccc;
+  margin-bottom: 1.5rem; /* More space below subtitle */
+  font-size: 0.9rem;
+}
+
+.form-container input {
+  width: 100%;
+  padding: 0.8rem; /* More comfortable touch area */
+  margin-bottom: 1rem; /* More space between inputs */
+  border: none;
+  border-radius: 10px;
+  background-color: #3a3a3d;
+  color: white;
+  font-size: 1rem; /* Slightly larger font */
+  transition: all 0.3s ease;
+}
+
+.form-container input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #b4ff39;
+}
+
+.form-container button {
+  background-color: #b4ff39;
+  color: #000;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.form-container button:hover {
+  background-color: #c4ff59;
+  transform: translateY(-2px);
+}
+
+.form-container button:active {
+  transform: translateY(0);
+}
+
+.avatar-upload {
+  width: 100%;
+  margin: 1rem 0; /* More space around upload section */
+  text-align: left;
+}
+
+.avatar-upload label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.form-container a {
+  color: #b4ff39;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s;
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+.form-container a:hover {
+  color: #c4ff59;
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 400px) {
+  .form-container {
+    padding: 1.5rem 1.2rem; /* Slightly less padding on very small screens */
+    margin: 0 15px; /* Ensure it doesn't touch screen edges */
+  }
+  
+  .form-container h2 {
+    font-size: 1.3rem;
+  }
+  
+  .form-container input,
+  .form-container button {
+    padding: 0.7rem;
+  }
+}
+
+/* Make sure body doesn't scroll when form is open */
+body.form-open {
+  overflow: hidden;
+}

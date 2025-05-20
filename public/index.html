@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kaya-Learning</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Login Form -->
+<div class="login-form" id="loginForm">
+  <div class="form-container">
+    <h2>Welcome to Kaya Learning</h2>
+    <p>Enter your details to continue</p>
+    <input type="text" id="userName" placeholder="Your Name" required />
+    <input type="password" id="password" placeholder="Password" required />
+    <div class="avatar-upload">
+      <label for="avatarUpload">Upload Profile-Pic:</label>
+      <input type="file" id="avatarUpload" accept="image/*" />
+    </div>
+    <button id="submitName">Continue</button>
+    <p>Don't have an account? <a href="#" id="registerLink">Register</a></p>
+  </div>
+</div>
+
+<!-- Registration Form -->
+<div class="login-form" id="registerForm" style="display: none;">
+  <div class="form-container">
+    <h2>Create Your Account</h2>
+    <p>Join Kaya Learning today</p>
+    <input type="text" id="registerUserName" placeholder="Choose a Username" required />
+    <input type="password" id="registerPassword" placeholder="Create a Password" required />
+    <div class="avatar-upload">
+      <label for="registerAvatarUpload">Upload Profile Picture (optional):</label>
+      <input type="file" id="registerAvatarUpload" accept="image/*" />
+    </div>
+    <button id="submitRegister">Create Account</button>
+    <p>Already have an account? <a href="#" id="loginLink">Login</a></p>
+  </div>
+</div>
+
+<!-- Main App (hidden initially) -->
+<div class="app" id="mainApp" style="display: none;">
+  <header>
+    <div class="greeting">Hi! <span id="displayName"></span></div>
+    <div class="sub-greeting">Welcome to Kaya Learning</div>
+    <div class="avatar">
+      <img id="userAvatarImg" src="https://i.pravatar.cc/50" alt="avatar" />
+    </div>
+
+     <div class="header-right">
+    <div class="avatar">
+      <img id="userAvatarImg" src="https://i.pravatar.cc/50" alt="avatar" />
+    </div>
+    <button id="logoutBtn" class="logout-btn">Logout</button>
+  </div>
+
+
+  </header>
+
+  <main class="content-area">
+    <section class="training-plan">
+      <div class="days-container">
+        <div class="days-scroll">
+          <div class="days">
+            <!-- Days will be added dynamically by JavaScript -->
+          </div>
+        </div>
+      </div>
+
+      <div class="progress-card">
+        <div class="lesson-content-area">
+          <div class="progress-header">
+            <span class="tag">Lesson</span>
+            <h2 id="lesson-title">Loading lesson...</h2>
+            <div class="details">⏱️ 45 min • 🧩 Beginner</div>
+            <div class="lesson-content" id="lesson-content">
+              <p>Loading lesson content...</p>
+            </div>
+          </div>
+        </div>
+        <div class="progress-circle">
+          <svg>
+            <circle cx="30" cy="30" r="25" />
+            <circle cx="30" cy="30" r="25" class="progress" />
+          </svg>
+          <div class="percentage-container">
+            <div class="percentage">0%</div>
+            <div class="progress-label">Overall</div>
+          </div>
+        </div>
+        <button class="continue">Continue To Next Lesson →</button>
+        <div class="progress-warning" style="display: none;">
+          Please listen to at least 70% of this lesson before continuing
+        </div>
+      </div>
+    </section>
+
+    <section class="my-activity">
+      <h3>My Activity</h3>
+      <div class="categories">
+        <button class="active">📚 Courses</button>
+        <button>🎧 Audio Lessons</button>
+        <button>📖 E-books</button>
+      </div>
+      <div class="workouts">
+        <div class="workout-card">
+          <img src="./instagram.png" alt="Instagram" />
+          <div class="desc">Follow Me On Instagram Now<br>12 lessons • 4.5 hours</div>
+        </div>
+        <div class="workout-card">
+          <img src="./Whatsapp Icon Whatsapp Logo PNG Images,  Whatsapp Icon, Whatsapp, Whatsapp Logo PNG Transparent Background - Pngtree.jpg" alt="WhatsApp" />
+          <div class="desc">Contact Me On WhatsApp Now<br>8 lessons • 3 hours</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Account Section -->
+    <section class="account-section">
+      <h3>My Account</h3>
+      <div class="account-settings">
+        <div class="setting-item">
+          <label for="fontSelect">Select Font:</label>
+          <select id="fontSelect">
+            <option value="Arial, sans-serif">Arial</option>
+            <option value="'Roboto', sans-serif">Roboto</option>
+            <option value="'Open Sans', sans-serif">Open Sans</option>
+            <option value="'Lato', sans-serif">Lato</option>
+          </select>
+        </div>
+        <div class="setting-item">
+          <label for="fontSizeSelect">Font Size:</label>
+          <select id="fontSizeSelect">
+            <option value="0.8rem">Small</option>
+            <option value="1rem" selected>Medium</option>
+            <option value="1.2rem">Large</option>
+          </select>
+        </div>
+        <div class="setting-item">
+          <label for="fontWeightSelect">Font Weight:</label>
+          <select id="fontWeightSelect">
+            <option value="400">Normal</option>
+            <option value="500">Medium</option>
+            <option value="700">Bold</option>
+          </select>
+        </div>
+        <div class="setting-item">
+          <label for="fontColorSelect">Font Color:</label>
+          <select id="fontColorSelect">
+            <option value="#ffffff">White</option>
+            <option value="#cccccc">Light Gray</option>
+            <option value="#b4ff39">Green</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Progress Tab -->
+    <section class="progress-tab">
+      <h3>My Progress</h3>
+
+      <div class="progress-stats">
+        <div class="stat-item">
+          <span class="stat-value">24%</span>
+          <span class="stat-label">Course Completed</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">7</span>
+          <span class="stat-label">Lessons Finished</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">3h 45m</span>
+          <span class="stat-label">Time Spent</span>
+        </div>
+      </div>
+
+      <div class="progress-chart">
+        <!-- Chart will be rendered here -->
+        <p>Your progress chart will appear here</p>
+      </div>
+
+      <div class="recent-activity">
+        <h4>Recent Activity</h4>
+        <ul>
+          <li>Completed Lesson 5 - 2 days ago</li>
+          <li>Started Lesson 6 - 1 day ago</li>
+          <li>Revisited Lesson 3 - 3 days ago</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Community Tab -->
+    <section class="community-tab">
+      <h3>Community Discussions</h3>
+
+      <div class="community-posts">
+        <div class="post">
+          <div class="post-header">
+            <img src="https://i.pravatar.cc/30" alt="User" class="post-avatar">
+            <span class="post-author">John D.</span>
+            <span class="post-time">2 hours ago</span>
+          </div>
+          <p class="post-content">Just finished Lesson 5 - the techniques really work!</p>
+          <div class="post-actions">
+            <button>Like</button>
+            <button>Comment</button>
+          </div>
+        </div>
+
+        <div class="post">
+          <div class="post-header">
+            <img src="https://i.pravatar.cc/30?img=5" alt="User" class="post-avatar">
+            <span class="post-author">Sarah M.</span>
+            <span class="post-time">5 hours ago</span>
+          </div>
+          <p class="post-content">Can anyone share their experience with Lesson 7 exercises?</p>
+          <div class="post-actions">
+            <button>Like</button>
+            <button>Comment</button>
+          </div>
+        </div>
+
+        <div class="post">
+          <div class="post-header">
+            <img src="https://i.pravatar.cc/30?img=8" alt="User" class="post-avatar">
+            <span class="post-author">Mike T.</span>
+            <span class="post-time">1 day ago</span>
+          </div>
+          <p class="post-content">The affirmation techniques in Lesson 4 changed my mindset completely</p>
+          <div class="post-actions">
+            <button>Like</button>
+            <button>Comment</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav">
+    <button class="nav-btn active" data-target="home">
+      <span class="nav-icon">🏠</span>
+      <span class="nav-text">Home</span>
+    </button>
+    <button class="nav-btn" data-target="progress">
+      <span class="nav-icon">📊</span>
+      <span class="nav-text">Progress</span>
+    </button>
+    <button class="nav-btn" data-target="library">
+      <span class="nav-icon">📘</span>
+      <span class="nav-text">Community</span>
+    </button>
+    <button class="nav-btn" data-target="account">
+      <span class="nav-icon">👤</span>
+      <span class="nav-text">Account</span>
+    </button>
+  </nav>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
