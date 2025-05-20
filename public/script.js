@@ -501,7 +501,7 @@ async function initUserProgress() {
   
   if (token && savedUser) {
     try {
-      const response = await fetch('http://localhost:5000/api/user/progress', {
+      const response = await fetch('https://kayani-program.onrender.com/api/user/progress', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -534,7 +534,7 @@ async function saveUserProgress() {
   
   if (token && user) {
     try {
-      const response = await fetch('http://localhost:5000/api/user/progress', {
+      const response = await fetch('https://kayani-program.onrender.com/api/user/progress', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -628,13 +628,13 @@ document.getElementById('submitRegister').addEventListener('click', async functi
         avatarUrl = await convertImageToBase64(avatarFile);
       }
       
-      const response = await fetch('http://localhost:5000/api/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username: userName, password, avatarUrl }),
-      });
+    const response = await fetch('https://kayani-program.onrender.com/api/auth/register', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username: userName, password, avatarUrl }),
+          });
       
       const data = await response.json();
       
@@ -667,7 +667,7 @@ document.getElementById('submitName').addEventListener('click', async function()
         avatarUrl = await convertImageToBase64(avatarFile);
       }
       
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const response = await fetch('https://kayani-program.onrender.com/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -697,7 +697,7 @@ async function logout() {
     const token = localStorage.getItem('token');
     
     // Call server logout endpoint
-    await fetch('http://localhost:5000/api/auth/logout', {
+    await fetch('https://kayani-program.onrender.com/api/logout', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,
