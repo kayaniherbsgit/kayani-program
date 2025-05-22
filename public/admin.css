@@ -1,63 +1,178 @@
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #1c1c1e;
+  color: #fff;
+  font-family: 'Arial', sans-serif;
   margin: 0;
-  padding: 20px;
-  background-color: #f4f6f8;
+  padding: 1rem;
 }
 
 .admin-dashboard {
-  max-width: 960px;
-  margin: auto;
-  background: white;
-  padding: 20px 30px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 0 auto;
+  padding-bottom: 80px;
 }
 
 .admin-dashboard h1 {
-  margin-bottom: 10px;
-  font-size: 28px;
+  font-size: 1.4rem;
+  color: #b4ff39;
+  margin-bottom: 0.2rem;
 }
 
 .admin-dashboard p {
-  margin-bottom: 20px;
-  color: #555;
+  font-size: 0.8rem;
+  color: #ccc;
+  margin-bottom: 1rem;
+}
+
+#usersContainer {
+  background-color: #2a2a2d;
+  border-radius: 15px;
+  padding: 1rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 #usersTable {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  margin-top: 1rem;
 }
 
-#usersTable th, #usersTable td {
-  border: 1px solid #ddd;
-  padding: 10px;
+#usersTable th,
+#usersTable td {
+  padding: 0.6rem;
+  font-size: 0.75rem;
   text-align: center;
 }
 
 #usersTable th {
-  background-color: #007BFF;
-  color: white;
+  background-color: #3a3a3d;
+  color: #b4ff39;
 }
 
-#usersTable tr:nth-child(even) {
-  background-color: #f9f9f9;
+#usersTable td {
+  background-color: #2a2a2d;
+  border-bottom: 1px solid #444;
 }
 
-#usersTable tr:hover {
-  background-color: #f1f1f1;
+#usersTable tr:last-child td {
+  border-bottom: none;
+}
+
+#usersTable img {
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  object-fit: cover;
 }
 
 button {
-  padding: 6px 12px;
-  background-color: #dc3545;
-  color: white;
+  background-color: #ff4d4d;
+  color: #fff;
   border: none;
-  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  border-radius: 10px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: #c82333;
+  background-color: #ff3333;
+}
+
+/* Scrollbar Hidden */
+::-webkit-scrollbar {
+  display: none;
+}
+
+
+body {
+  background-color: #1c1c1e;
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 1rem;
+  overflow-x: hidden;
+}
+
+.admin-dashboard {
+  max-width: 500px;
+  margin: 0 auto;
+  padding-bottom: 80px;
+}
+
+.admin-dashboard h1 {
+  font-size: 1.5rem;
+  color: #b4ff39;
+  margin-bottom: 0.4rem;
+  font-weight: bold;
+}
+
+.admin-dashboard p {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-bottom: 1.2rem;
+}
+
+.user-card {
+  background-color: #2a2a2d;
+  border-radius: 15px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.user-card:hover {
+  transform: translateY(-2px);
+}
+
+.user-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.user-header img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.user-info .username {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #b4ff39;
+}
+
+.user-info .details {
+  font-size: 0.75rem;
+  color: #ccc;
+  margin-top: 2px;
+}
+
+.user-actions {
+  text-align: right;
+  margin-top: 0.8rem;
+}
+
+.user-actions button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  font-size: 0.75rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.user-actions button:hover {
+  background-color: #ff2f2f;
 }

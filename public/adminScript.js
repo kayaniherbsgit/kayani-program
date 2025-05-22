@@ -16,21 +16,25 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!res.ok) throw new Error("Access denied");
 
     const users = await res.json();
-    const tbody = document.querySelector("#usersTable tbody");
-    tbody.innerHTML = "";
+    const container = document.getElementById("usersList");
+    container.innerHTML = "";
 
     users.forEach(user => {
-      const tr = document.createElement("tr");
-
-      tr.innerHTML = `
-        <td>${user.username}</td>
-        <td><img src="${user.avatarUrl}" alt="Avatar" style="width:40px; height:40px; border-radius:50%"/></td>
-        <td>${user.completedLessons?.length || 0}</td>
-        <td>${Object.keys(user.lessonProgress || {}).length}</td>
-        <td><button onclick="deleteUser('${user._id}')">Delete</button></td>
+      const card = document.createElement("div");
+      card.className = "user-card";
+      card.innerHTML = `
+        <div class="user-header">
+          <img src="${user.avatarUrl}" alt="Avatar">
+          <div class="user-info">
+            <div class="username">${user.username}</div>
+            <div class="details">Lessons: ${user.completedLessons?.length || 0} | Progress: ${Object.keys(user.lessonProgress || {}).length}</div>
+          </div>
+        </div>
+        <div class="user-actions">
+          <button onclick="deleteUser('${user._id}')">Delete</button>
+        </div>
       `;
-
-      tbody.appendChild(tr);
+      container.appendChild(card);
     });
   } catch (err) {
     console.error(err);
