@@ -576,12 +576,12 @@ function updateProgressDisplay() {
   const progress = calculateOverallProgress();
   document.querySelector('.percentage').textContent = `${progress}%`;
 
-  // Update progress circle
   const circumference = 188.4;
   const offset = circumference - (progress / 100) * circumference;
   document.querySelector('.progress').style.strokeDashoffset = offset;
-}
 
+  renderLessonProgressList(); // ✅ KEY LINE to update progress tab content
+}
 // Helper function to convert image to base64
 function convertImageToBase64(file) {
   return new Promise((resolve, reject) => {
@@ -1170,32 +1170,49 @@ document.querySelector('.continue').addEventListener('click', async function() {
 
 // Handle bottom navigation
 document.querySelectorAll('.nav-btn').forEach(button => {
-  button.addEventListener('click', function() {
+  button.addEventListener('click', function () {
     const target = this.dataset.target;
 
-    document.querySelectorAll('.nav-btn').forEach(btn => {
-      btn.classList.remove('active');
-    });
+    document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
     this.classList.add('active');
 
-    // Show/hide sections based on navigation
-    if (target === 'account') {
-      document.querySelector('.account-section').style.opacity = '1';
-      document.querySelector('.account-section').style.visibility = 'visible';
-      document.querySelector('.my-activity').style.opacity = '0';
-      document.querySelector('.my-activity').style.visibility = 'hidden';
-      document.querySelector('.training-plan').style.opacity = '0';
-      document.querySelector('.training-plan').style.visibility = 'hidden';
-    } else {
-      document.querySelector('.account-section').style.opacity = '0';
-      document.querySelector('.account-section').style.visibility = 'hidden';
-      document.querySelector('.my-activity').style.opacity = '1';
-      document.querySelector('.my-activity').style.visibility = 'visible';
-      document.querySelector('.training-plan').style.opacity = '1';
-      document.querySelector('.training-plan').style.visibility = 'visible';
+    // Hide all sections
+    document.querySelector('.training-plan').style.display = 'none';
+    document.querySelector('.my-activity').style.display = 'none';
+    document.querySelector('.account-section').style.display = 'none';
+    document.querySelector('.progress-tab').style.display = 'none';
+    document.querySelector('.community-tab').style.display = 'none';
+
+    // Show selected section
+    if (target === 'home') {
+      document.querySelector('.training-plan').style.display = 'block';
+      document.querySelector('.my-activity').style.display = 'block';
+    } else if (target === 'account') {
+const sections = {
+  home: ['.training-plan', '.my-activity'],
+  account: ['.account-section'],
+  progress: ['.progress-tab'],
+  library: ['.community-tab']
+};
+
+Object.values(sections).flat().forEach(sel => {
+  const el = document.querySelector(sel);
+  if (el) el.style.display = 'none';
+});
+
+sections[target].forEach(sel => {
+  const el = document.querySelector(sel);
+  if (el) el.style.display = 'block';
+});
+    } else if (target === 'progress') {
+      document.querySelector('.progress-tab').style.display = 'block';
+      updateProgressDisplay();
+    } else if (target === 'library') {
+      document.querySelector('.community-tab').style.display = 'block';
     }
   });
 });
+
 
 // Load saved font on page load
 window.addEventListener('DOMContentLoaded', function() {
@@ -1296,3 +1313,32 @@ document.getElementById('loginLink').addEventListener('click', function(e) {
   hideForm('registerForm');
   showForm('loginForm');
 });
+
+function renderLessonProgressList() {
+  const listContainer = document.getElementById('lessonProgressList');
+  if (!listContainer) return;
+
+  listContainer.innerHTML = ''; // Clear previous content
+
+  lessonsData.forEach(lesson => {
+    const progress = userProgress.lessonProgress?.[lesson.day] || 0;
+    const isCompleted = userProgress.completedLessons?.includes(lesson.day);
+    const color = progress >= 70 ? '#b4ff39' : progress >= 30 ? '#ffaa00' : '#ff4d4d';
+
+    const progressItem = document.createElement('div');
+    progressItem.className = 'lesson-progress-item';
+    progressItem.innerHTML = `
+      <div class="lesson-progress-info">
+        <strong>Day ${lesson.day}:</strong> ${lesson.title}
+        <span class="status-tag" style="color:${color}; font-weight:bold;">
+          ${isCompleted ? '✓ Completed' : progress >= 70 ? '✓ Listened' : progress > 0 ? 'In Progress' : 'Not Started'}
+        </span>
+      </div>
+      <div class="progress-bar-wrapper">
+        <div class="progress-bar-fill" style="width: ${progress}%; background: ${color};"></div>
+      </div>
+    `;
+
+    listContainer.appendChild(progressItem);
+  });
+}
