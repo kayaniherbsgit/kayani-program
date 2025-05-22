@@ -40,21 +40,20 @@
 <!-- Main App (hidden initially) -->
 <div class="app" id="mainApp" style="display: none;">
   <header>
-    <div class="greeting">Hi! <span id="displayName"></span></div>
-    <div class="sub-greeting">Welcome to Kaya Learning</div>
-    <div class="avatar">
-      <img id="userAvatarImg" src="https://i.pravatar.cc/50" alt="avatar" />
-    </div>
-
-     <div class="header-right">
+  <div class="greeting">Hi! <span id="displayName"></span></div>
+  <div class="sub-greeting">Welcome to Kaya Learning</div>
+  <div class="header-right">
     <div class="avatar">
       <img id="userAvatarImg" src="https://i.pravatar.cc/50" alt="avatar" />
     </div>
     <button id="logoutBtn" class="logout-btn">Logout</button>
   </div>
 
+  <div id="adminLinkContainer" style="display: none; margin-left: auto;">
+  <a href="admin.html" class="logout-btn" style="background: #b4ff39; color: #000;">🔐 Admin Panel</a>
+</div>
 
-  </header>
+</header>
 
   <main class="content-area">
     <section class="training-plan">
@@ -151,6 +150,11 @@
           </select>
         </div>
       </div>
+
+      <div id="adminLinkContainer" style="display: none;">
+  <a href="admin.html" class="admin-link">Go to Admin Panel</a>
+</div>
+
     </section>
 
     <!-- Progress Tab -->

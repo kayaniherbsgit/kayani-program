@@ -1047,6 +1047,18 @@ html, body {
   margin: auto; /* Ensures centering */
 }
 
+.answer-textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 8px;
+  border-radius: 6px;
+  background: #1e1e1e;
+  color: #fff;
+  border: 1px solid #3a3a3d;
+  resize: vertical;
+}
+
+
 @keyframes fadeIn {
   from {
     opacity: 0;

@@ -8,6 +8,7 @@ const authenticate = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.userId = decoded.userId;
+    req.isAdmin = decoded.isAdmin || false; // 🆕 store admin flag
     next();
   } catch (error) {
     res.status(401).json({ message: 'Token is not valid' });

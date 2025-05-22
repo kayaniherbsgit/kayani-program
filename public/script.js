@@ -594,25 +594,30 @@ function convertImageToBase64(file) {
 
 // Update UI after successful login
 function completeLoginUI(user) {
+  // 🛑 Move this check before touching any DOM!
+  if (user.isAdmin) {
+    window.location.href = 'admin.html';
+    return;
+  }
+
+  // Only run this for non-admin users
   document.getElementById('displayName').textContent = user.username;
   document.getElementById('userAvatarImg').src = user.avatarUrl;
   document.getElementById('loginForm').style.display = 'none';
   document.getElementById('registerForm').style.display = 'none';
   document.getElementById('mainApp').style.display = 'block';
-  
-  // Initialize user progress from server data
+
   userProgress = {
     completedLessons: user.completedLessons || [],
     lastAccessed: user.lastAccessed || null,
     lessonProgress: user.lessonProgress || {},
     avatarUrl: user.avatarUrl
   };
-  
-  // Set up logout button
+
   document.getElementById('logoutBtn').addEventListener('click', logout);
-  
   updateProgressDisplay();
 }
+
 
 // Handle registration form submission
 document.getElementById('submitRegister').addEventListener('click', async function() {
@@ -768,7 +773,7 @@ window.addEventListener('DOMContentLoaded', async function() {
   }, true);
 });
 
-function loadLesson(dayNumber) {
+async function loadLesson(dayNumber) {
   const lesson = lessonsData.find(l => l.day === dayNumber) || {
     day: dayNumber,
     title: `Lesson ${dayNumber}`,
@@ -781,6 +786,63 @@ function loadLesson(dayNumber) {
   // Update lesson info
   document.getElementById('lesson-title').textContent = lesson.title;
   document.querySelector('.details').textContent = `⏱️ ${lesson.duration} • 🧩 ${lesson.level}`;
+
+  // ✅ Custom input field logic for Day 2 answers
+if (dayNumber === 2) {
+  const token = localStorage.getItem('token');
+  const savedUser = JSON.parse(localStorage.getItem('user'));
+
+  let previousAnswers = {};
+  try {
+    const res = await fetch('https://kayani-program.onrender.com/api/user/answers', {
+      method: 'GET',
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    const data = await res.json();
+    previousAnswers = data.lessonAnswers?.['2'] || {};
+  } catch (err) {
+    console.error('Error loading previous answers:', err);
+  }
+
+  document.querySelectorAll('.assignment-questions li').forEach((li, index) => {
+    const textarea = document.createElement('textarea');
+    textarea.placeholder = 'Jibu lako hapa...';
+    textarea.classList.add('answer-textarea');
+    textarea.dataset.q = index + 1;
+    textarea.value = previousAnswers[index + 1] || '';
+
+    textarea.addEventListener('blur', async () => {
+      const allAnswers = {};
+      document.querySelectorAll('.answer-textarea').forEach(input => {
+        allAnswers[input.dataset.q] = input.value;
+      });
+
+      try {
+        await fetch('https://kayani-program.onrender.com/api/user/answers', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({
+            lessonNumber: 2,
+            answers: allAnswers
+          })
+        });
+      } catch (err) {
+        console.error('Failed to save answers:', err);
+      }
+    });
+
+ li.appendChild(textarea);
+});
+
+// 👇 Place this after the forEach loop ends
+const assignmentBox = document.querySelector('.assignment-box');
+if (assignmentBox) {
+  assignmentBox.classList.add('expanded');
+}
+}
 
   // Reset audio progress
   audioProgress = {
