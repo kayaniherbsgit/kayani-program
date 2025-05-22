@@ -158,46 +158,36 @@
     </section>
 
     <!-- Progress Tab -->
-    <section class="progress-tab">
-      <h3>My Progress</h3>
+<!-- Progress Tab -->
+<section class="progress-tab">
+  <h3 class="section-title">📊 Progress Overview</h3>
 
-      <div class="progress-stats">
-        <div class="stat-item">
-          <span class="stat-value">24%</span>
-          <span class="stat-label">Course Completed</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-value">7</span>
-          <span class="stat-label">Lessons Finished</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-value">3h 45m</span>
-          <span class="stat-label">Time Spent</span>
-        </div>
-      </div>
-
-      <div class="progress-chart">
-        <!-- Chart will be rendered here -->
-        <p>Your progress chart will appear here</p>
-      </div>
-
-      <div class="recent-activity">
-        <h4>Recent Activity</h4>
-        <ul>
-          <li>Completed Lesson 5 - 2 days ago</li>
-          <li>Started Lesson 6 - 1 day ago</li>
-          <li>Revisited Lesson 3 - 3 days ago</li>
-        </ul>
-      </div>
-
-          <div class="detailed-progress">
-      <h4>Lesson-by-Lesson Progress</h4>
-      <div id="lessonProgressList"></div>
+  <div class="summary-stats">
+    <div class="stat-box">
+      <h4 id="coursePercent">--%</h4>
+      <p>Course Completed</p>
     </div>
-  
+    <div class="stat-box">
+      <h4 id="lessonsCompleted">--</h4>
+      <p>Lessons Completed</p>
+    </div>
+    <div class="stat-box">
+      <h4 id="timeSpent">--</h4>
+      <p>Time Spent</p>
+    </div>
+  </div>
 
+  <div class="lesson-progress-list" id="lessonProgressList">
+    <!-- Lesson progress bars inserted by JS -->
+  </div>
 
-    </section>
+  <div class="recent-activity">
+    <h4>Recent Activity</h4>
+    <ul id="recent-activity-list">
+      <!-- Activity inserted by JS -->
+    </ul>
+  </div>
+</section>
 
     <!-- Community Tab -->
     <section class="community-tab">

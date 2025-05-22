@@ -581,6 +581,8 @@ function updateProgressDisplay() {
   document.querySelector('.progress').style.strokeDashoffset = offset;
 
   renderLessonProgressList(); // ✅ KEY LINE to update progress tab content
+    updateProgressOverview();   // ✅ ADD THIS LINE HERE
+
 }
 // Helper function to convert image to base64
 function convertImageToBase64(file) {
@@ -1341,4 +1343,25 @@ function renderLessonProgressList() {
 
     listContainer.appendChild(progressItem);
   });
+}
+
+
+function updateProgressOverview() {
+  const progressData = userProgress || {};
+  const completed = progressData.completedLessons?.length || 0;
+  const total = lessonsData.length;
+  const percent = Math.round((completed / total) * 100);
+
+  // Total time spent
+  let totalMinutes = 0;
+  for (const lesson of lessonsData) {
+    const dur = parseInt(lesson.duration); // e.g., "4 min"
+    if (!isNaN(dur) && progressData.completedLessons?.includes(lesson.day)) {
+      totalMinutes += dur;
+    }
+  }
+
+  document.getElementById("coursePercent").textContent = `${percent}%`;
+  document.getElementById("lessonsCompleted").textContent = `${completed} / ${total}`;
+  document.getElementById("timeSpent").textContent = `${totalMinutes} min`;
 }
