@@ -6,6 +6,6 @@ module.exports = {
   REFRESH_SECRET: process.env.REFRESH_SECRET,
   REFRESH_EXPIRES_IN: process.env.REFRESH_EXPIRES_IN || '7d',
   NODE_ENV: process.env.NODE_ENV || 'development',
-  RATE_LIMIT_WINDOW: process.env.RATE_LIMIT_WINDOW || 15 * 60 * 1000, // 15 minutes
+  RATE_LIMIT_WINDOW: process.env.RATE_LIMIT_WINDOW || 15 * 60 * 1000,
   RATE_LIMIT_MAX: process.env.RATE_LIMIT_MAX || 100
 };

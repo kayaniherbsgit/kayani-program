@@ -657,16 +657,13 @@ document.getElementById('submitRegister').addEventListener('click', async functi
 document.getElementById('submitName').addEventListener('click', async function() {
   const userName = document.getElementById('userName').value.trim();
   const password = document.getElementById('password').value.trim();
-  const avatarFile = document.getElementById('avatarUpload').files[0];
+  // const avatarFile = document.getElementById('avatarUpload').files[0];
 
   if (userName && password) {
     try {
       let avatarUrl = "https://i.pravatar.cc/50";
       
-      if (avatarFile) {
-        avatarUrl = await convertImageToBase64(avatarFile);
-      }
-      
+       
       const response = await fetch('https://kayani-program.onrender.com/api/auth/login', {
         method: 'POST',
         headers: {
@@ -694,30 +691,20 @@ document.getElementById('submitName').addEventListener('click', async function()
 // Logout function
 async function logout() {
   try {
-    const token = localStorage.getItem('token');
-    
-    // Call server logout endpoint
-    await fetch('https://kayani-program.onrender.com/api/logout', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      }
-    });
+    // No need to call backend logout
 
     // Clear client-side storage
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    
+
     // Reset UI
     document.getElementById('mainApp').style.display = 'none';
     document.getElementById('loginForm').style.display = 'block';
-    
+
     // Clear form fields
     document.getElementById('userName').value = '';
     document.getElementById('password').value = '';
-    document.getElementById('avatarUpload').value = '';
-    
+
     // Reset progress tracking
     userProgress = {
       completedLessons: [],
@@ -725,14 +712,15 @@ async function logout() {
       lessonProgress: {},
       avatarUrl: "https://i.pravatar.cc/50"
     };
-    
+
     // Stop any playing audio
     stopCurrentlyPlayingAudio();
+
   } catch (error) {
-    console.error('Logout error:', error);
-    alert('Error during logout');
+    console.error('Logout error:', error); // optional, or just remove
   }
 }
+
 
 // Add event listener for logout button
 window.addEventListener('DOMContentLoaded', async function() {
