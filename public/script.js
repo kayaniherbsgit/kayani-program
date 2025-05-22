@@ -734,14 +734,39 @@ window.addEventListener('DOMContentLoaded', async function() {
   const savedUser = localStorage.getItem('user');
   const token = localStorage.getItem('token');
   
-  if (savedUser && token) {
-    const user = JSON.parse(savedUser);
-    completeLoginUI(user);
-    await initUserProgress();
-  } else {
-    // Show login form if not logged in
-    document.getElementById('loginForm').style.display = 'block';
+if (savedUser && token) {
+  const user = JSON.parse(savedUser);
+
+  if (user.isAdmin) {
+    window.location.href = 'admin.html';
+    return;
   }
+
+  completeLoginUI(user);
+  await initUserProgress();
+
+  const daysContainer = document.querySelector('.days');
+  lessonsData.forEach((lesson, index) => {
+    const dayElement = document.createElement('div');
+    dayElement.className = 'day';
+    dayElement.dataset.day = lesson.day;
+    if (index === 0) dayElement.classList.add('active');
+    dayElement.innerHTML = `Day ${lesson.day}`;
+    dayElement.addEventListener('click', function () {
+      document.querySelectorAll('.day').forEach(d => d.classList.remove('active'));
+      this.classList.add('active');
+      loadLesson(lesson.day);
+    });
+    daysContainer.appendChild(dayElement);
+  });
+
+  if (lessonsData.length > 0) {
+    loadLesson(1);
+  }
+} else {
+  document.getElementById('loginForm').style.display = 'block';
+}
+
 
   // Generate days 1-30
   const daysContainer = document.querySelector('.days');
