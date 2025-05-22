@@ -1,6 +1,6 @@
 const User = require('../models/User');
 
-// GET answers for a lesson
+// ✅ GET answers for a lesson
 const getAnswers = async (req, res) => {
   try {
     const user = await User.findById(req.userId);
@@ -13,7 +13,7 @@ const getAnswers = async (req, res) => {
   }
 };
 
-// PUT answers for a lesson
+// ✅ PUT answers for a lesson
 const saveAnswers = async (req, res) => {
   const { lessonNumber, answers } = req.body;
 
@@ -35,7 +35,44 @@ const saveAnswers = async (req, res) => {
   }
 };
 
+// ✅ ADMIN: Get all users
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find({}, 'username avatarUrl completedLessons lessonProgress lastAccessed createdAt');
+    res.json(users);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to fetch users' });
+  }
+};
+
+// ✅ ADMIN: Get one user
+const getSingleUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id, 'username avatarUrl completedLessons lessonProgress lastAccessed');
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to fetch user' });
+  }
+};
+
+// ✅ ADMIN: Delete user
+const deleteUser = async (req, res) => {
+  try {
+    const deletedUser = await User.findByIdAndDelete(req.params.id);
+    if (!deletedUser) return res.status(404).json({ message: 'User not found' });
+
+    res.json({ message: 'User deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to delete user' });
+  }
+};
+
 module.exports = {
   getAnswers,
-  saveAnswers
+  saveAnswers,
+  getAllUsers,
+  getSingleUser,
+  deleteUser
 };

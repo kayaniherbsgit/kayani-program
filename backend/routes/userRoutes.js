@@ -4,12 +4,15 @@ const User = require('../models/User');
 const authenticate = require('../middleware/auth');
 const {
   getAnswers,
-  saveAnswers
+  saveAnswers,
+  getAllUsers,
+  getSingleUser,
+  deleteUser
 } = require('../controllers/userController');
 
 const router = express.Router();
 
-// Normal user progress routes
+// ✅ Normal user progress routes
 router.get('/progress', authenticate, async (req, res) => {
   const user = await User.findById(req.userId);
   if (!user) return res.status(404).json({ message: 'User not found' });
@@ -37,33 +40,9 @@ router.put('/progress', authenticate, async (req, res) => {
 router.get('/answers', authenticate, getAnswers);
 router.put('/answers', authenticate, saveAnswers);
 
-// 🔐 ADMIN ROUTES BELOW
-router.get('/admin/users', authenticate, async (req, res) => {
-  const admin = await User.findById(req.userId);
-  if (!admin || !admin.isAdmin) return res.status(403).json({ message: 'Access denied' });
-
-  const users = await User.find({}, 'username avatarUrl completedLessons lessonProgress lastAccessed createdAt');
-  res.json(users);
-});
-
-router.get('/admin/user/:id', authenticate, async (req, res) => {
-  const admin = await User.findById(req.userId);
-  if (!admin || !admin.isAdmin) return res.status(403).json({ message: 'Access denied' });
-
-  const user = await User.findById(req.params.id, 'username avatarUrl completedLessons lessonProgress lastAccessed');
-  if (!user) return res.status(404).json({ message: 'User not found' });
-
-  res.json(user);
-});
-
-router.delete('/admin/user/:id', authenticate, async (req, res) => {
-  const admin = await User.findById(req.userId);
-  if (!admin || !admin.isAdmin) return res.status(403).json({ message: 'Access denied' });
-
-  const deletedUser = await User.findByIdAndDelete(req.params.id);
-  if (!deletedUser) return res.status(404).json({ message: 'User not found' });
-
-  res.json({ message: 'User deleted successfully' });
-});
+// 🔐 ADMIN ROUTES (refactored to use controller)
+router.get('/admin/users', authenticate, getAllUsers);
+router.get('/admin/user/:id', authenticate, getSingleUser);
+router.delete('/admin/user/:id', authenticate, deleteUser);
 
 module.exports = router;
