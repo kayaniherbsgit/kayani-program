@@ -1018,9 +1018,24 @@ if (assignmentBox) {
         markLessonCompleted(dayNumber);
       });
 
-      // Try to play automatically (muted to avoid autoplay restrictions)
-      audioElement.muted = true;
-      const playPromise = audioElement.play();
+      const isUserLoggedIn = localStorage.getItem('token') && localStorage.getItem('user');
+
+      if (isUserLoggedIn) {
+        audioElement.muted = true;
+        const playPromise = audioElement.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .catch(e => {
+              console.log('Autoplay prevented, showing controls instead');
+              audioElement.muted = false;
+              audioElement.controls = true;
+            })
+            .then(() => {
+              audioElement.muted = false;
+            });
+        }
+      }
+
 
       if (playPromise !== undefined) {
         playPromise.catch(e => {
