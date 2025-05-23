@@ -189,7 +189,7 @@ async function viewProgress(userId) {
     modalBody.innerHTML = `
       <div style="text-align:center">
         <img src="${user.avatarUrl}" alt="Avatar" style="width:60px; height:60px; border-radius:50%; margin-bottom:10px" />
-        <h3 style="margin-bottom:5px; color:#b4ff39">${user.username}</h3>
+        <h3 style="margin-bottom:5px; color:#147d34">${user.username}</h3>
       </div>
       <p><strong>Completed Lessons:</strong> ${user.completedLessons?.length || 0}</p>
       <p><strong>Last Accessed:</strong> Day ${user.lastAccessed || 'N/A'}</p>

@@ -36,7 +36,7 @@ body {
   animation: fadeIn 0.4s ease-out;
 }
 .form-container h2 {
-  color: #b4ff39;
+  color: #147d34;
   margin-bottom: 0.8rem;
   font-size: 1.3rem;
 }
@@ -56,7 +56,7 @@ body {
   font-size: 0.9rem;
 }
 .form-container button {
-  background-color: #b4ff39;
+  background-color: #147d34;
   color: #000;
   padding: 0.6rem 1.5rem;
   border: none;
@@ -83,7 +83,7 @@ header {
 .greeting {
   font-size: 1.2rem;
   font-weight: bold;
-  color: #b4ff39;
+  color: #147d34;
 }
 .sub-greeting {
   font-size: 0.7rem;
@@ -160,7 +160,7 @@ header {
   background-color: #3a3a3d;
 }
 .day.active {
-  background-color: #b4ff39;
+  background-color: #147d34;
   color: #000;
   font-weight: bold;
 }
@@ -177,7 +177,7 @@ header {
   flex: 1;
 }
 .tag {
-  background-color: #b4ff39;
+  background-color: #147d34;
   padding: 2px 6px;
   border-radius: 6px;
   color: #000;
@@ -247,7 +247,7 @@ header {
   flex-wrap: wrap;
 }
 .resource-link {
-  color: #b4ff39;
+  color: #147d34;
   text-decoration: none;
   font-size: 0.7rem;
   background-color: #3a3a3d;
@@ -284,7 +284,7 @@ header {
 }
 
 .form-container h2 {
-  color: #b4ff39;
+  color: #147d34;
   margin-bottom: 0.8rem;
   font-size: 1.3rem;
 }
@@ -307,7 +307,7 @@ header {
 }
 
 .form-container button {
-  background-color: #b4ff39;
+  background-color: #147d34;
   color: #000;
   padding: 0.6rem 1.5rem;
   border: none;
@@ -338,7 +338,7 @@ header {
 }
 
 .form-container a {
-  color: #b4ff39;
+  color: #147d34;
   text-decoration: none;
   font-size: 0.8rem;
   transition: color 0.3s;
@@ -378,7 +378,7 @@ circle {
   stroke-width: 5;
 }
 circle.progress {
-  stroke: #b4ff39;
+  stroke: #147d34;
   stroke-dasharray: 188.4;
   stroke-dashoffset: 188.4;
   transition: stroke-dashoffset 0.5s ease;
@@ -405,7 +405,7 @@ circle.progress {
 }
 .continue {
   margin-top: 0.8rem;
-  background-color: #b4ff39;
+  background-color: #147d34;
   color: #000;
   padding: 0.6rem;
   width: 100%;
@@ -452,7 +452,7 @@ circle.progress {
   background-color: #3a3a3d;
 }
 .categories .active {
-  background-color: #b4ff39;
+  background-color: #147d34;
   color: #000;
 }
 .workouts {
@@ -521,7 +521,7 @@ circle.progress {
   color: #ccc;
 }
 .nav-btn.active {
-  color: #b4ff39;
+  color: #147d34;
 }
 .nav-btn.active::after {
   content: '';
@@ -531,7 +531,7 @@ circle.progress {
   transform: translateX(-50%);
   width: 15px;
   height: 2px;
-  background-color: #b4ff39;
+  background-color: #147d34;
   border-radius: 2px;
 }
 
@@ -727,7 +727,7 @@ html, body {
 }
 
 .play-pause-btn {
-  background: #b4ff39;
+  background: #147d34;
   color: #000;
   border: none;
   border-radius: 50%;
@@ -747,7 +747,7 @@ html, body {
 
 .progress-bar {
   height: 100%;
-  background: #b4ff39;
+  background: #147d34;
   border-radius: 4px;
   width: 0%;
 }
@@ -802,12 +802,12 @@ html, body {
 
 .assignment-header h4 {
   margin: 0;
-  color: #b4ff39;
+  color: #147d34;
   font-size: 1rem;
 }
 
 .toggle-icon {
-  color: #b4ff39;
+  color: #147d34;
   font-size: 1rem;
   transition: transform 0.3s ease;
 }
@@ -845,7 +845,7 @@ html, body {
 }
 
 .question-number {
-  color: #b4ff39;
+  color: #147d34;
   font-weight: bold;
   min-width: 20px;
 }
@@ -871,7 +871,7 @@ html, body {
 }
 
 .highlight {
-  color: #b4ff39;
+  color: #147d34;
   font-weight: bold;
 }
 
@@ -912,7 +912,7 @@ html, body {
 }
 
 .additional-lesson h4 {
-  color: #b4ff39;
+  color: #147d34;
   margin-bottom: 10px;
 }
 
@@ -933,7 +933,7 @@ html, body {
 }
 
 #registerForm .form-container h2 {
-  color: #b4ff39;
+  color: #147d34;
   margin-bottom: 0.8rem;
   font-size: 1.3rem;
 }
@@ -956,7 +956,7 @@ html, body {
 }
 
 #registerForm .form-container button {
-  background-color: #b4ff39;
+  background-color: #147d34;
   color: #000;
   padding: 0.6rem 1.5rem;
   border: none;
@@ -981,7 +981,7 @@ html, body {
 }
 
 #registerForm .form-container a {
-  color: #b4ff39;
+  color: #147d34;
   text-decoration: none;
   font-size: 0.8rem;
 }
@@ -1066,7 +1066,7 @@ html, body {
 }
 
 .form-container h2 {
-  color: #b4ff39;
+  color: #147d34;
   margin-bottom: 1rem; /* Slightly more space */
   font-size: 1.5rem; /* Larger heading */
   font-weight: 700;
@@ -1092,11 +1092,11 @@ html, body {
 
 .form-container input:focus {
   outline: none;
-  box-shadow: 0 0 0 2px #b4ff39;
+  box-shadow: 0 0 0 2px #147d34;
 }
 
 .form-container button {
-  background-color: #b4ff39;
+  background-color: #147d34;
   color: #000;
   padding: 0.8rem 1.5rem;
   border: none;
@@ -1132,7 +1132,7 @@ html, body {
 }
 
 .form-container a {
-  color: #b4ff39;
+  color: #147d34;
   text-decoration: none;
   font-size: 0.9rem;
   transition: color 0.3s;
@@ -1206,7 +1206,7 @@ body.form-open {
   font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 1rem;
-  color: #b4ff39;
+  color: #147d34;
 }
 
 /* Stats Summary */
@@ -1229,7 +1229,7 @@ body.form-open {
 }
 
 .stat-box h4 {
-  color: #b4ff39;
+  color: #147d34;
   font-size: 1.4rem;
 }
 
@@ -1269,7 +1269,7 @@ body.form-open {
 .progress-bar-fill {
   height: 100%;
   transition: width 0.4s ease;
-  background: #b4ff39;
+  background: #147d34;
 }
 
 /* Recent Activity */
@@ -1281,7 +1281,7 @@ body.form-open {
 
 .recent-activity h4 {
   margin-bottom: 0.5rem;
-  color: #b4ff39;
+  color: #147d34;
 }
 
 .recent-activity ul {
@@ -1303,7 +1303,7 @@ body.form-open {
   font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 1rem;
-  color: #b4ff39;
+  color: #147d34;
 }
 
 /* Summary Stats Grid */
@@ -1327,7 +1327,7 @@ body.form-open {
 }
 
 .stat-box h4 {
-  color: #b4ff39;
+  color: #147d34;
   font-size: 1.4rem;
 }
 
@@ -1367,7 +1367,7 @@ body.form-open {
 .progress-bar-fill {
   height: 100%;
   transition: width 0.4s ease;
-  background: #b4ff39;
+  background: #147d34;
 }
 
 /* Recent Activity */
@@ -1379,7 +1379,7 @@ body.form-open {
 
 .recent-activity h4 {
   margin-bottom: 0.5rem;
-  color: #b4ff39;
+  color: #147d34;
 }
 
 .recent-activity ul {
@@ -1397,3 +1397,4 @@ body.form-open {
 .recent-activity li:last-child {
   border-bottom: none;
 }
+

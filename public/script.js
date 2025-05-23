@@ -21,7 +21,7 @@ const lessonsData = [
 
       <div class="assignment-box">
         <div class="assignment-header">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#b4ff39">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#147d34">
             <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
           </svg>
           <h4>Maswali Ya Kuweka Malengo</h4>
@@ -103,7 +103,7 @@ const lessonsData = [
 
         .assignment-header h4 {
           margin: 0;
-          color: #b4ff39;
+          color: #147d34;
           font-size: 1rem;
         }
 
@@ -136,7 +136,7 @@ const lessonsData = [
         }
 
         .question-number {
-          color: #b4ff39;
+          color: #147d34;
           font-weight: bold;
           min-width: 20px;
         }
@@ -162,7 +162,7 @@ const lessonsData = [
         }
 
         .highlight {
-          color: #b4ff39;
+          color: #147d34;
           font-weight: bold;
         }
 
@@ -174,7 +174,7 @@ const lessonsData = [
         }
 
         .additional-lesson h4 {
-          color: #b4ff39;
+          color: #147d34;
           margin-bottom: 10px;
         }
 
@@ -430,7 +430,7 @@ const lessonsData = [
                 border-bottom: 1px solid #3a3a3d;
             }
             .sub-lesson:last-child { border-bottom: none; }
-            .sub-lesson h3 { color: #b4ff39; margin-bottom: 0.5rem; }
+            .sub-lesson h3 { color: #147d34; margin-bottom: 0.5rem; }
             .sub-lesson .duration { color: #aaa; margin: 0.5rem 0; }
         </style>
     `
@@ -581,7 +581,9 @@ function updateProgressDisplay() {
   document.querySelector('.progress').style.strokeDashoffset = offset;
 
   renderLessonProgressList(); // ✅ KEY LINE to update progress tab content
-    updateProgressOverview();   // ✅ ADD THIS LINE HERE
+  updateProgressOverview();   // ✅ ADD THIS LINE HERE
+  updateDailyStreak();
+  drawProgressChart();
 
 }
 // Helper function to convert image to base64
@@ -922,7 +924,7 @@ if (assignmentBox) {
         justify-content: space-between;
       ">
         <span style="color: #aaa;">Listened:</span>
-        <span id="audio-progress-text" style="color: #b4ff39; font-weight: bold;">0%</span>
+        <span id="audio-progress-text" style="color: #147d34; font-weight: bold;">0%</span>
       </div>
     </div>
   ` : '<p class="no-audio">Audio not available for this lesson</p>';
@@ -1360,31 +1362,59 @@ function renderLessonProgressList() {
   const listContainer = document.getElementById('lessonProgressList');
   if (!listContainer) return;
 
-  listContainer.innerHTML = ''; // Clear previous content
+  listContainer.innerHTML = '';
 
   lessonsData.forEach(lesson => {
     const progress = userProgress.lessonProgress?.[lesson.day] || 0;
     const isCompleted = userProgress.completedLessons?.includes(lesson.day);
-    const color = progress >= 70 ? '#b4ff39' : progress >= 30 ? '#ffaa00' : '#ff4d4d';
+
+    let statusHTML = '';
+    let barColor = '#ff4d4d'; // default for Not Started
+
+    if (isCompleted) {
+      if (progress >= 90) {
+        barColor = '#147d34';
+        statusHTML = `<span class="status-tag" style="color:#147d34; font-weight:bold;">✓ Completed</span>`;
+      } else {
+        barColor = '#147d34';
+        statusHTML = `
+          <span class="status-tag" style="color:#147d34; font-weight:bold;">✓ Completed</span>
+          <span class="low-listen" style="color:#ff0000; font-weight:bold; margin-left:8px; animation: blink 1s infinite;">• ${progress}% Listened</span>
+        `;
+      }
+    } else if (progress > 0) {
+      barColor = '#ff9900';
+      statusHTML = `<span class="status-tag" style="color:#ff9900; font-weight:bold;">In Progress</span>`;
+    } else {
+      barColor = '#ff4d4d';
+      statusHTML = `<span class="status-tag" style="color:#ff4d4d; font-weight:bold;">Not Started</span>`;
+    }
 
     const progressItem = document.createElement('div');
     progressItem.className = 'lesson-progress-item';
     progressItem.innerHTML = `
       <div class="lesson-progress-info">
         <strong>Day ${lesson.day}:</strong> ${lesson.title}
-        <span class="status-tag" style="color:${color}; font-weight:bold;">
-          ${isCompleted ? '✓ Completed' : progress >= 70 ? '✓ Listened' : progress > 0 ? 'In Progress' : 'Not Started'}
-        </span>
+        ${statusHTML}
       </div>
       <div class="progress-bar-wrapper">
-        <div class="progress-bar-fill" style="width: ${progress}%; background: ${color};"></div>
+        <div class="progress-bar-fill" style="width: ${progress}%; background: ${barColor};"></div>
       </div>
     `;
 
     listContainer.appendChild(progressItem);
   });
-}
 
+  // Add blinking animation via JS if not already in CSS
+  const blinkStyle = document.createElement('style');
+  blinkStyle.innerHTML = `
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  `;
+  document.head.appendChild(blinkStyle);
+}
 
 function updateProgressOverview() {
   const progressData = userProgress || {};
